@@ -17,7 +17,7 @@
   <transform>
     <type>CSVInput</type>
     <name>CSV file input</name>
-    <filename>C:\Users\rodri\Downloads\Datos_Grupo - Hoja 1.csv</filename>
+    <filename>C:\Users\rodri\Documents\ETL\Datos\Datos_Grupo - Hoja 1.csv</filename>
     <include_filename>N</include_filename>
     <rownum_field/>
     <header>Y</header>
@@ -27,7 +27,7 @@
     <lazy_conversion>N</lazy_conversion>
     <add_filename_result>N</add_filename_result>
     <parallel>N</parallel>
-    <encoding/>
+    <encoding>UTF-8</encoding>
     <newline_possible>N</newline_possible>
     <schemaDefinition/>
     <ignoreFields>N</ignoreFields>
@@ -111,7 +111,7 @@
       </field>
       <field>
         <name>Facultad</name>
-        <length>23</length>
+        <length>22</length>
         <type>String</type>
         <format/>
         <trim_type>none</trim_type>
@@ -171,32 +171,44 @@
     <name>If null</name>
     <fields>
       <field>
-        <name>Nombre de Mascota</name>
-        <value>Sin mascota</value>
+        <name>Mascota1</name>
+        <value>SIN MASCOTA</value>
         <mask/>
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
         <name>Pasatiempo</name>
-        <value>No especificado</value>
+        <value>NO ESPECIFICADO</value>
         <mask/>
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
         <name>Carrera</name>
-        <value>Ingeniería en Computación</value>
+        <value>INGENIERIA EN COMPUTACION</value>
         <mask/>
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
         <name>Cantante favorito</name>
-        <value>No especificado</value>
+        <value>NO ESPECIFICADO</value>
         <mask/>
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
         <name>Banda Favorita</name>
-        <value>No especificada</value>
+        <value>NO ESPECIFICADA</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>Amigo 2</name>
+        <value>NO ESPECIFICADO</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>Mascota2</name>
+        <value>SIN MASCOTA</value>
         <mask/>
         <set_empty_string>N</set_empty_string>
       </field>
@@ -210,7 +222,7 @@
     <distribute>N</distribute>
     <copies>1</copies>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>880</xloc>
       <yloc>160</yloc>
     </GUI>
     <partitioning>
@@ -239,17 +251,70 @@
     <tablename_in_table>Y</tablename_in_table>
     <return_keys>N</return_keys>
     <return_field/>
-    <specify_fields>N</specify_fields>
+    <specify_fields>Y</specify_fields>
     <auto_update_table_structure>N</auto_update_table_structure>
     <always_drop_and_recreate>N</always_drop_and_recreate>
     <add_columns>N</add_columns>
     <drop_columns>N</drop_columns>
     <change_column_types>N</change_column_types>
-    <fields/>
+    <fields>
+      <field>
+        <stream_name>Nombre</stream_name>
+        <column_name>Nombre</column_name>
+      </field>
+      <field>
+        <stream_name>Direccion</stream_name>
+        <column_name>Direccion</column_name>
+      </field>
+      <field>
+        <stream_name>Amigo 1</stream_name>
+        <column_name>Amigo 1</column_name>
+      </field>
+      <field>
+        <stream_name>Amigo 2</stream_name>
+        <column_name>Amigo 2</column_name>
+      </field>
+      <field>
+        <stream_name>CURP</stream_name>
+        <column_name>CURP</column_name>
+      </field>
+      <field>
+        <stream_name>Pasatiempo</stream_name>
+        <column_name>Pasatiempo</column_name>
+      </field>
+      <field>
+        <stream_name>Carrera</stream_name>
+        <column_name>Carrera</column_name>
+      </field>
+      <field>
+        <stream_name>Facultad</stream_name>
+        <column_name>Facultad</column_name>
+      </field>
+      <field>
+        <stream_name>Cantante favorito</stream_name>
+        <column_name>Cantante favorito</column_name>
+      </field>
+      <field>
+        <stream_name>Edad</stream_name>
+        <column_name>Edad</column_name>
+      </field>
+      <field>
+        <stream_name>Banda Favorita</stream_name>
+        <column_name>Banda Favorita</column_name>
+      </field>
+      <field>
+        <stream_name>Mascota1</stream_name>
+        <column_name>Mascota1</column_name>
+      </field>
+      <field>
+        <stream_name>Mascota2</stream_name>
+        <column_name>Mascota2</column_name>
+      </field>
+    </fields>
     <distribute>Y</distribute>
     <copies>1</copies>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>1072</xloc>
       <yloc>160</yloc>
     </GUI>
     <partitioning>
@@ -265,7 +330,7 @@
     <create_parent_folder>Y</create_parent_folder>
     <separator>,</separator>
     <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
+    <enclosure_forced>Y</enclosure_forced>
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>Y</header>
     <footer>N</footer>
@@ -277,7 +342,7 @@
     <schema_definition/>
     <ignore_fields>N</ignore_fields>
     <file>
-      <name>C:\Users\rodri\Documents\IngenieriaDatos2027-1\Pruebas\ExamenesLimpios</name>
+      <name>C:\Users\rodri\Documents\ETL\DatosSalida\DatosLimpios.txt</name>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extension>csv</extension>
       <append>N</append>
@@ -320,10 +385,10 @@
         <roundingType>half_even</roundingType>
       </field>
       <field>
-        <name>Nombre de Mascota</name>
+        <name>Mascota1</name>
         <type>String</type>
         <format/>
-        <length>16</length>
+        <length>-1</length>
         <precision>-1</precision>
         <currency/>
         <decimal/>
@@ -333,10 +398,36 @@
         <roundingType>half_even</roundingType>
       </field>
       <field>
-        <name>Apodo de 2 mejores amigos</name>
+        <name>Mascota2</name>
         <type>String</type>
         <format/>
-        <length>16</length>
+        <length>-1</length>
+        <precision>-1</precision>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <roundingType>half_even</roundingType>
+      </field>
+      <field>
+        <name>Amigo 1</name>
+        <type>String</type>
+        <format/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <roundingType>half_even</roundingType>
+      </field>
+      <field>
+        <name>Amigo 2</name>
+        <type>String</type>
+        <format/>
+        <length>-1</length>
         <precision>-1</precision>
         <currency/>
         <decimal/>
@@ -375,7 +466,7 @@
         <name>Carrera</name>
         <type>String</type>
         <format/>
-        <length>25</length>
+        <length>26</length>
         <precision>-1</precision>
         <currency/>
         <decimal/>
@@ -388,7 +479,7 @@
         <name>Facultad</name>
         <type>String</type>
         <format/>
-        <length>23</length>
+        <length>22</length>
         <precision>-1</precision>
         <currency/>
         <decimal/>
@@ -440,7 +531,7 @@
     <distribute>Y</distribute>
     <copies>1</copies>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>1072</xloc>
       <yloc>288</yloc>
     </GUI>
     <partitioning>
@@ -456,8 +547,152 @@
       <field>
         <in_stream_name>Nombre</in_stream_name>
         <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÁÄÂÀ]</replace_string>
+        <replace_by_string>A</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Nombre</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÉËÊÈ]</replace_string>
+        <replace_by_string>E</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Nombre</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÍÏÎÌ]</replace_string>
+        <replace_by_string>I</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Nombre</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÓÖÔÒ]</replace_string>
+        <replace_by_string>O</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Nombre</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÚÜÛÙ]</replace_string>
+        <replace_by_string>U</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÁÄÂÀ]</replace_string>
+        <replace_by_string>A</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÉËÊÈ]</replace_string>
+        <replace_by_string>E</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÍÏÎÌ]</replace_string>
+        <replace_by_string>I</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÓÖÔÒ]</replace_string>
+        <replace_by_string>O</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÚÜÛÙ]</replace_string>
+        <replace_by_string>U</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
         <use_regex>N</use_regex>
-        <replace_string/>
+        <replace_string>CIUDAD DE MEXICO</replace_string>
+        <replace_by_string>CDMX</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
+        <use_regex>N</use_regex>
+        <replace_string>ESTADO DE MEXICO</replace_string>
+        <replace_by_string>EDO MEX</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
+        <use_regex>N</use_regex>
+        <replace_string>COL.</replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
@@ -469,7 +704,43 @@
         <in_stream_name>Direccion</in_stream_name>
         <out_stream_name/>
         <use_regex>N</use_regex>
-        <replace_string/>
+        <replace_string>COLONIA</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
+        <use_regex>N</use_regex>
+        <replace_string>DEL.</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
+        <use_regex>N</use_regex>
+        <replace_string>GAM</replace_string>
+        <replace_by_string>GUSTAVO A. MADERO</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
+        <use_regex>N</use_regex>
+        <replace_string>C.P.</replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
@@ -480,9 +751,141 @@
       <field>
         <in_stream_name>Nombre de Mascota</in_stream_name>
         <out_stream_name/>
-        <use_regex>N</use_regex>
+        <use_regex>Y</use_regex>
         <replace_string>-</replace_string>
         <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Nombre de Mascota</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>NA </replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Nombre de Mascota</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÁÄÂÀ]</replace_string>
+        <replace_by_string>A</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Nombre de Mascota</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÉËÊÈ]</replace_string>
+        <replace_by_string>E</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Nombre de Mascota</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÍÏÎÌ]</replace_string>
+        <replace_by_string>I</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Nombre de Mascota</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÓÖÔÒ]</replace_string>
+        <replace_by_string>O</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Nombre de Mascota</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÚÜÛÙ]</replace_string>
+        <replace_by_string>U</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Apodo de 2 mejores amigos</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÁÄÂÀ]</replace_string>
+        <replace_by_string>A</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Apodo de 2 mejores amigos</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÉËÊÈ]</replace_string>
+        <replace_by_string>E</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Apodo de 2 mejores amigos</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÍÏÎÌ]</replace_string>
+        <replace_by_string>I</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Apodo de 2 mejores amigos</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÓÖÔÒ]</replace_string>
+        <replace_by_string>O</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Apodo de 2 mejores amigos</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÚÜÛÙ]</replace_string>
+        <replace_by_string>U</replace_by_string>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
         <whole_word>N</whole_word>
@@ -493,20 +896,8 @@
         <in_stream_name>Apodo de 2 mejores amigos</in_stream_name>
         <out_stream_name/>
         <use_regex>N</use_regex>
-        <replace_string/>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>N</whole_word>
-        <case_sensitive>N</case_sensitive>
-        <is_unicode>N</is_unicode>
-      </field>
-      <field>
-        <in_stream_name>CURP</in_stream_name>
-        <out_stream_name/>
-        <use_regex>N</use_regex>
-        <replace_string/>
-        <replace_by_string/>
+        <replace_string>, </replace_string>
+        <replace_by_string> Y </replace_by_string>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
         <whole_word>N</whole_word>
@@ -516,9 +907,117 @@
       <field>
         <in_stream_name>Pasatiempo</in_stream_name>
         <out_stream_name/>
-        <use_regex>N</use_regex>
-        <replace_string/>
-        <replace_by_string/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÁÄÂÀ]</replace_string>
+        <replace_by_string>A</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Pasatiempo</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÉËÊÈ]</replace_string>
+        <replace_by_string>E</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Pasatiempo</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÍÏÎÌ]</replace_string>
+        <replace_by_string>I</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Pasatiempo</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÓÖÔÒ]</replace_string>
+        <replace_by_string>O</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Pasatiempo</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÚÜÛÙ]</replace_string>
+        <replace_by_string>U</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Carrera</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÁÄÂÀ]</replace_string>
+        <replace_by_string>A</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Carrera</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÉËÊÈ]</replace_string>
+        <replace_by_string>E</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Carrera</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÍÏÎÌ]</replace_string>
+        <replace_by_string>I</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Carrera</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÓÖÔÒ]</replace_string>
+        <replace_by_string>O</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Carrera</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÚÜÛÙ]</replace_string>
+        <replace_by_string>U</replace_by_string>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
         <whole_word>N</whole_word>
@@ -529,8 +1028,20 @@
         <in_stream_name>Carrera</in_stream_name>
         <out_stream_name/>
         <use_regex>N</use_regex>
-        <replace_string/>
-        <replace_by_string/>
+        <replace_string>INGENIERIAÃ- EN COMPUTACIO</replace_string>
+        <replace_by_string>INGENIERIA EN COMPUTACION</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Carrera</in_stream_name>
+        <out_stream_name/>
+        <use_regex>N</use_regex>
+        <replace_string>ING EN COMPUTACION</replace_string>
+        <replace_by_string>INGENIERIA EN COMPUTACION</replace_by_string>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
         <whole_word>N</whole_word>
@@ -540,9 +1051,57 @@
       <field>
         <in_stream_name>Facultad</in_stream_name>
         <out_stream_name/>
-        <use_regex>N</use_regex>
-        <replace_string/>
-        <replace_by_string/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÁÄÂÀ]</replace_string>
+        <replace_by_string>A</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Facultad</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÉËÊÈ]</replace_string>
+        <replace_by_string>E</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Facultad</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÍÏÎÌ]</replace_string>
+        <replace_by_string>I</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Facultad</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÓÖÔÒ]</replace_string>
+        <replace_by_string>O</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Facultad</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÚÜÛÙ]</replace_string>
+        <replace_by_string>U</replace_by_string>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
         <whole_word>N</whole_word>
@@ -552,9 +1111,57 @@
       <field>
         <in_stream_name>Cantante favorito</in_stream_name>
         <out_stream_name/>
-        <use_regex>N</use_regex>
-        <replace_string/>
-        <replace_by_string/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÁÄÂÀ]</replace_string>
+        <replace_by_string>A</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Cantante favorito</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÉËÊÈ]</replace_string>
+        <replace_by_string>E</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Cantante favorito</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÍÏÎÌ]</replace_string>
+        <replace_by_string>I</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Cantante favorito</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÓÖÔÒ]</replace_string>
+        <replace_by_string>O</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Cantante favorito</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÚÜÛÙ]</replace_string>
+        <replace_by_string>U</replace_by_string>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
         <whole_word>N</whole_word>
@@ -564,9 +1171,57 @@
       <field>
         <in_stream_name>Banda Favorita</in_stream_name>
         <out_stream_name/>
-        <use_regex>N</use_regex>
-        <replace_string/>
-        <replace_by_string/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÁÄÂÀ]</replace_string>
+        <replace_by_string>A</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Banda Favorita</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÉËÊÈ]</replace_string>
+        <replace_by_string>E</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Banda Favorita</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÍÏÎÌ]</replace_string>
+        <replace_by_string>I</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Banda Favorita</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÓÖÔÒ]</replace_string>
+        <replace_by_string>O</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>N</whole_word>
+        <case_sensitive>N</case_sensitive>
+        <is_unicode>N</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>Banda Favorita</in_stream_name>
+        <out_stream_name/>
+        <use_regex>Y</use_regex>
+        <replace_string>[ÚÜÛÙ]</replace_string>
+        <replace_by_string>U</replace_by_string>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
         <whole_word>N</whole_word>
@@ -577,7 +1232,256 @@
     <distribute>Y</distribute>
     <copies>1</copies>
     <GUI>
-      <xloc>320</xloc>
+      <xloc>448</xloc>
+      <yloc>160</yloc>
+    </GUI>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+  </transform>
+  <transform>
+    <type>StringOperations</type>
+    <name>String operations</name>
+    <fields>
+      <field>
+        <in_stream_name>Nombre</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+        <padding_type>none</padding_type>
+        <pad_len/>
+        <pad_char/>
+      </field>
+      <field>
+        <in_stream_name>Direccion</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+        <padding_type>none</padding_type>
+        <pad_len/>
+        <pad_char/>
+      </field>
+      <field>
+        <in_stream_name>Nombre de Mascota</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+        <padding_type>none</padding_type>
+        <pad_len/>
+        <pad_char/>
+      </field>
+      <field>
+        <in_stream_name>Apodo de 2 mejores amigos</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+        <padding_type>none</padding_type>
+        <pad_len/>
+        <pad_char/>
+      </field>
+      <field>
+        <in_stream_name>CURP</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+        <padding_type>none</padding_type>
+        <pad_len/>
+        <pad_char/>
+      </field>
+      <field>
+        <in_stream_name>Pasatiempo</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+        <padding_type>none</padding_type>
+        <pad_len/>
+        <pad_char/>
+      </field>
+      <field>
+        <in_stream_name>Carrera</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+        <padding_type>none</padding_type>
+        <pad_len/>
+        <pad_char/>
+      </field>
+      <field>
+        <in_stream_name>Facultad</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+        <padding_type>none</padding_type>
+        <pad_len/>
+        <pad_char/>
+      </field>
+      <field>
+        <in_stream_name>Cantante favorito</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+        <padding_type>none</padding_type>
+        <pad_len/>
+        <pad_char/>
+      </field>
+      <field>
+        <in_stream_name>Banda Favorita</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+        <padding_type>none</padding_type>
+        <pad_len/>
+        <pad_char/>
+      </field>
+    </fields>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>160</yloc>
+    </GUI>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+  </transform>
+  <transform>
+    <type>FieldSplitter</type>
+    <name>Split fields amigos</name>
+    <splitfield>Apodo de 2 mejores amigos</splitfield>
+    <delimiter> Y </delimiter>
+    <enclosure/>
+    <escape_string/>
+    <fields>
+      <field>
+        <name>Amigo 1</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>Amigo 2</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+    </fields>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>160</yloc>
+    </GUI>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+  </transform>
+  <transform>
+    <type>FieldSplitter</type>
+    <name>Split fields mascotas</name>
+    <splitfield>Nombre de Mascota</splitfield>
+    <delimiter> Y </delimiter>
+    <enclosure/>
+    <escape_string/>
+    <fields>
+      <field>
+        <name>Mascota1</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>Mascota2</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+    </fields>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <GUI>
+      <xloc>752</xloc>
       <yloc>160</yloc>
     </GUI>
     <partitioning>
@@ -599,11 +1503,26 @@
     </hop>
     <hop>
       <from>CSV file input</from>
+      <to>String operations</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations</from>
       <to>Replace in string</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Replace in string</from>
+      <to>Split fields amigos</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Split fields amigos</from>
+      <to>Split fields mascotas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Split fields mascotas</from>
       <to>If null</to>
       <enabled>Y</enabled>
     </hop>
