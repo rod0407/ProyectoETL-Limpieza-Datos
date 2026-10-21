@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  mysql_etl:
+    image: mysql:8.0
+    container_name: etl_db
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: etl_db
+    ports:
+      - "3306:3306"
