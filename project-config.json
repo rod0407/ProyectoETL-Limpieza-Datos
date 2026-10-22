@@ -1,0 +1,8 @@
+{
+  "description" : "ETL examenes CSV y salarios tech Parquet hacia CSV y MySQL",
+  "metadataBaseFolder" : "${PROJECT_HOME}/metadata",
+  "unitTestsBasePath" : "${PROJECT_HOME}",
+  "dataSetsCsvFolder" : "${PROJECT_HOME}/datasets",
+  "enforcingExecutionInHome" : true,
+  "parentProjectName" : "default"
+}
