@@ -5,6 +5,6 @@ Proyecto colaborativo con varias entregas: los mismos pipelines de limpieza impl
 ## Estructura
 - **datos/**: Datos de entrada compartidos por todas las entregas.
 - **apache-hop/**: Entrega 1, pipelines con Apache Hop y MySQL. Ver [apache-hop/README.md](apache-hop/README.md).
-- **spark/**: Entrega 2, los mismos pipelines con Spark (en construcción).
+- **spark/**: Entrega 2, los mismos pipelines con Spark 2.4.8 en Docker (en construcción). Ver [spark/README.md](spark/README.md).
 
 Cada entrega escribe sus resultados en su propia carpeta `datos-salida/`, ignorada por git.

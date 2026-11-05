@@ -1,0 +1,7 @@
+# Uso: docker compose run --rm spark [script.py]   (por defecto corre pipeline-examenes.py)
+services:
+  spark:
+    build: .
+    volumes:
+      - ../datos:/app/datos:ro   # datos de entrada compartidos (solo lectura)
+      - .:/app/spark             # esta carpeta: scripts y datos-salida/

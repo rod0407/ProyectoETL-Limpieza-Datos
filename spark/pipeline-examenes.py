@@ -1,31 +1,34 @@
+from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, trim, upper, initcap, when, count, upper, regexp_replace
 
 
-# Inicializar Spark 
+# Inicializar Spark
 
-# Se crea un objeto llamado Spark, con el cual se trabajara en todo el progarma 
-# SparkSession es el punto de entrada a Apache Spark
-# builder significa que vas a configurar cómo quieres iniciar Spark
-# cofig -> carga la libreria para leer archivos .xlsx 
+# SparkConf: guarda la configuración de la aplicación. Aquí solo le damos un nombre con setAppName.
+# SparkContext: es la conexión con Spark. Se crea a partir de la configuración anterior.
+# SparkSession: se crea a partir del SparkContext y es la que usamos para leer archivos y trabajar con DataFrames.
 
-#inicia la sesión de Apache Spark. Primero se crea la configuración de la sesión con SparkSession.builder, luego se asigna un nombre a la aplicación con appName, después se carga la librería spark-excel para poder leer archivos de Excel y, finalmente, getOrCreate() crea la sesión o reutiliza una que ya esté abierta
-
-spark = SparkSession.builder \
-    .appName("LimpiezaDatosGrupo") \
-    .config("spark.jars.packages", "com.crealytics:spark-excel_2.13:3.5.0_0.20.2") \
-    .getOrCreate()
+conf = SparkConf().setAppName("LimpiezaDatosGrupo")
+sc = SparkContext(conf=conf)
+spark = SparkSession(sc)
 
 
-#ruta del archivo 
-ruta_entrada = r"C:\Users\Sam Riv\Documents\SPARK_ENTREGA2\Datos_GRUPO.xlsx"
+# Ruta del archivo de entrada.
+# El programa se ejecuta desde la carpeta spark/, por eso ".." sube a la carpeta principal del proyecto
+# y de ahí entra a datos/
+ruta_entrada = "../datos/datos-grupo.csv"
 print(f"[INFO] Cargando archivo: {ruta_entrada}")
 
 
 
-#carga el archivo de Excel en un DataFrame de spark, primero se indica que se utilizará la librería spark-excel para leer un archivo de Excel. Después, con header = true se establece que la primera fila contiene los nombres de las columnas. Con inferSchema = true, Spark identifica automáticamente el tipo de dato de cada columna, como texto, número o fecha. Finalmente, load(ruta_entrada) abre el archivo ubicado en la ruta especificada y guarda la información en el DataFrame df
+# Carga el archivo CSV en un DataFrame de Spark.
+# format("csv"): indica que el archivo es un CSV.
+# header = true: la primera fila contiene los nombres de las columnas.
+# inferSchema = true: Spark identifica automáticamente el tipo de dato de cada columna, como texto o número.
+# load(ruta_entrada): abre el archivo y guarda la información en el DataFrame df
 
-df = spark.read.format("com.crealytics.spark.excel") \
+df = spark.read.format("csv") \
     .option("header", "true") \
     .option("inferSchema", "true") \
     .load(ruta_entrada)
@@ -33,10 +36,13 @@ df = spark.read.format("com.crealytics.spark.excel") \
 
 
 
+# count(): cuenta cuántas filas tiene el DataFrame
+# columns: es la lista con los nombres de las columnas
 print("\nESTRUCTURA ORIGINAL")
 print(f"Total de filas: {df.count()}")
 print("Nombre de columnas:", df.columns)
 
+# printSchema(): muestra cada columna con su tipo de dato (string = texto, integer = número entero)
 print("\n TIPOS DE DATOS DETECTADOS")
 df.printSchema()
 
@@ -48,12 +54,14 @@ print("LIMPIEZA DE DATOS")
 #withColumn(): Crear una columna nueva, modificar una columna existente.
 
 # withColumnRenamed(): cambia el nombre de una columna. En las siguientes líneas se usa df_limpio porque ya se está trabajando sobre el DataFrame que contiene los cambios anteriores
+# Spark no distingue mayúsculas de minúsculas en los nombres de columna: "Nombre de mascota" encuentra la columna "Nombre de Mascota" del CSV
+# show(): muestra en pantalla las primeras 20 filas del DataFrame
 
 df_limpio = df.withColumnRenamed("Nombre", "NOMBRE")
 
 df_limpio = df_limpio.withColumnRenamed("Direccion", "DIRECCION")
 
-df_limpio = df_limpio.withColumnRenamed("Nombre de mascota", "NOMBRE MASCOTAS")
+df_limpio = df_limpio.withColumnRenamed("Nombre de mascota", "MASCOTAS")
 
 df_limpio = df_limpio.withColumnRenamed("Apodo de 2 mejores amigos", "APODOS DE AMIGOS")
 
@@ -76,6 +84,7 @@ df_limpio.show()
 
 # trim(): elimina los espacios en blanco al inicio y al final del texto.
 # col(): toma los valores que están dentro de la columna
+# Nota: al aplicar trim a EDAD, Spark la convierte en texto; más adelante se vuelve a convertir a número con cast("int")
 
 
 df_limpio = df_limpio.withColumn("NOMBRE", trim(col("NOMBRE")))
@@ -102,7 +111,7 @@ df_limpio = df_limpio.withColumn("BANDA FAVORITA", trim(col("BANDA FAVORITA")))
 
 df_limpio.show()
 
-# 3Pasar todo a mayusculas 
+# Pasar todo a mayúsculas
 # upper(): convierte texto a mayúsculas
 
 df_limpio = df_limpio.withColumn("NOMBRE", upper(col("NOMBRE")))
@@ -131,6 +140,8 @@ df_limpio.show()
 # Eliminar acentos, dieresis y ñ
 # regexp_replace: sirve para buscar un carácter específico dentro de una columna y reemplazarlo por otro.
 # regexp_replace(columna, texto_a_buscar, texto_nuevo)
+# "regexp" viene de "expresión regular" (un patrón de búsqueda); aquí solo se usa para buscar una letra exacta.
+# Como el texto ya está en mayúsculas, solo hace falta buscar las letras acentuadas en mayúscula.
 
     #NOMBRE
 df_limpio = df_limpio.withColumn("NOMBRE", regexp_replace(col("NOMBRE"), "Á", "A"))
@@ -159,14 +170,14 @@ df_limpio = df_limpio.withColumn("MASCOTAS", regexp_replace(col("MASCOTAS"), "Ú
 df_limpio = df_limpio.withColumn("MASCOTAS", regexp_replace(col("MASCOTAS"), "Ü", "U"))
 df_limpio = df_limpio.withColumn("MASCOTAS", regexp_replace(col("MASCOTAS"), "Ñ", "N"))
 
-    #APODOS 
-df_limpio = df_limpio.withColumn("MASCOTAS", regexp_replace(col("MASCOTAS"), "Á", "A"))
-df_limpio = df_limpio.withColumn("MASCOTAS", regexp_replace(col("MASCOTAS"), "É", "E"))
-df_limpio = df_limpio.withColumn("MASCOTAS", regexp_replace(col("MASCOTAS"), "Í", "I"))
-df_limpio = df_limpio.withColumn("MASCOTAS", regexp_replace(col("MASCOTAS"), "Ó", "O"))
-df_limpio = df_limpio.withColumn("MASCOTAS", regexp_replace(col("MASCOTAS"), "Ú", "U"))
-df_limpio = df_limpio.withColumn("MASCOTAS", regexp_replace(col("MASCOTAS"), "Ü", "U"))
-df_limpio = df_limpio.withColumn("MASCOTAS", regexp_replace(col("MASCOTAS"), "Ñ", "N"))
+    #APODOS
+df_limpio = df_limpio.withColumn("APODOS DE AMIGOS", regexp_replace(col("APODOS DE AMIGOS"), "Á", "A"))
+df_limpio = df_limpio.withColumn("APODOS DE AMIGOS", regexp_replace(col("APODOS DE AMIGOS"), "É", "E"))
+df_limpio = df_limpio.withColumn("APODOS DE AMIGOS", regexp_replace(col("APODOS DE AMIGOS"), "Í", "I"))
+df_limpio = df_limpio.withColumn("APODOS DE AMIGOS", regexp_replace(col("APODOS DE AMIGOS"), "Ó", "O"))
+df_limpio = df_limpio.withColumn("APODOS DE AMIGOS", regexp_replace(col("APODOS DE AMIGOS"), "Ú", "U"))
+df_limpio = df_limpio.withColumn("APODOS DE AMIGOS", regexp_replace(col("APODOS DE AMIGOS"), "Ü", "U"))
+df_limpio = df_limpio.withColumn("APODOS DE AMIGOS", regexp_replace(col("APODOS DE AMIGOS"), "Ñ", "N"))
 
     #PASATIEMPO 
 df_limpio = df_limpio.withColumn("PASATIEMPO", regexp_replace(col("PASATIEMPO"), "Á", "A"))
@@ -218,6 +229,8 @@ df_limpio.show()
 # Columna de Carrera 
 # when(condición, valor_nuevo), 
 # .otherwise(): si no cumple la condición deja el valor original.
+# contains(texto): es verdadero si el valor incluye ese texto. Si CARRERA incluye "ING." o "ING ",
+# se reemplaza todo el valor por "INGENIERIA EN COMPUTACION".
 
 df_limpio = df_limpio.withColumn(
     "CARRERA",
@@ -234,18 +247,22 @@ df_limpio.show()
 df_limpio = df_limpio.withColumn("EDAD", col("EDAD").cast("int"))
 df_limpio.show()
 
-# Convertir NA, -, Ninguna a nulos reales
+# Convertir NA y - a nulos reales
 #.replace(): busca valores dentro de todo el DataFrame y los reemplaza.
+# Solo reemplaza cuando el valor completo es "NA" o "-", y solo en columnas de texto. None significa "nulo" (vacío).
 df_limpio = df_limpio.replace(["NA", "-"], None)
 df_limpio.show()
 
-# Rellenar celdas vacias 
+# Rellenar celdas vacias
 #fillna(): rellena valores nulo
+# Como el valor de relleno es texto, solo se aplica a columnas de texto; EDAD (número) no cambia.
 df_limpio = df_limpio.fillna("NO ESPECIFICADO")
 df_limpio.show()
 
-#RESULTADO FINAL 
+#RESULTADO FINAL
 
+# select(df_limpio.columns): elige todas las columnas del DataFrame
+# show(df_limpio.count()): muestra tantas filas como tiene el DataFrame, es decir, todas
 # truncate=False: evita que Spark corte textos largos
 
 print("\n REGISTROS LIMPIOPS")
@@ -257,16 +274,66 @@ print("\nESQUEMA FINAL")
 df_limpio.printSchema()
 
 #GUARDAR EL ARCHIVO DE SALIDA
-ruta_salida = r"C:\Users\Sam Riv\Documents\SPARK_ENTREGA2\Datos_GRUPO_Limpio.xlsx"
+# Spark guarda el CSV como una carpeta (datos-salida/examenes_limpios/) con un archivo part-00000-....csv adentro.
+ruta_salida = "datos-salida/examenes_limpios"
 
-#coalesce(1): sirve para que Spark genere un solo archivo de salida
+#coalesce(1): junta todos los datos en una sola parte, para que dentro de la carpeta quede un solo archivo .csv
+# header = true: escribe los nombres de las columnas en la primera fila
+# mode("overwrite"): si la carpeta ya existe, la reemplaza
 
 df_limpio.coalesce(1).write \
-    .format("com.crealytics.spark.excel") \
+    .format("csv") \
     .option("header", "true") \
     .mode("overwrite") \
     .save(ruta_salida)
 
 print("Archivo guardado correctamente")
+
+
+# CONSULTAS SOBRE LOS DATOS LIMPIOS
+# Son las mismas consultas que se harían con SQL, pero usando las funciones de los DataFrames de Spark.
+# Arriba de cada una está la sentencia SQL equivalente.
+
+# SQL: SELECT * FROM examenes
+# show(): muestra hasta 20 filas; como son 15 registros, salen todos
+print("\nCONSULTA 1: toda la tabla")
+df_limpio.show()
+
+# SQL: SELECT * FROM examenes LIMIT 5
+# show(5): muestra solo las primeras 5 filas
+print("\nCONSULTA 2: primeras 5 filas")
+df_limpio.show(5)
+
+# SQL: SELECT NOMBRE, CARRERA, EDAD FROM examenes
+# select(): elige solo las columnas indicadas
+print("\nCONSULTA 3: solo algunas columnas")
+df_limpio.select("NOMBRE", "CARRERA", "EDAD").show()
+
+# SQL: SELECT COUNT(*) FROM examenes
+# count(): cuenta cuántas filas hay
+print("\nCONSULTA 4: total de registros")
+print(df_limpio.count())
+
+# SQL: SELECT NOMBRE, EDAD FROM examenes WHERE EDAD > 22
+# where(): deja solo las filas que cumplen la condición
+print("\nCONSULTA 5: personas mayores de 22 años")
+df_limpio.select("NOMBRE", "EDAD").where(col("EDAD") > 22).show()
+
+# SQL: SELECT CARRERA, COUNT(*) FROM examenes GROUP BY CARRERA
+# groupBy(): agrupa las filas que tienen el mismo valor en la columna; count() cuenta cuántas hay en cada grupo
+print("\nCONSULTA 6: cantidad de personas por carrera")
+df_limpio.groupBy("CARRERA").count().show()
+
+# SQL: SELECT NOMBRE, EDAD FROM examenes ORDER BY EDAD DESC
+# orderBy(): ordena las filas; ascending=False las ordena de mayor a menor
+print("\nCONSULTA 7: ordenados por edad, de mayor a menor")
+df_limpio.select("NOMBRE", "EDAD").orderBy("EDAD", ascending=False).show()
+
+# SQL: SELECT DISTINCT FACULTAD FROM examenes
+# distinct(): quita los valores repetidos
+print("\nCONSULTA 8: facultades distintas")
+df_limpio.select("FACULTAD").distinct().show()
+
+
 # Cerrar la sesión de Spark al terminar
 spark.stop()
