@@ -18,7 +18,7 @@
     <type>GetFileNames</type>
     <name>Get file names</name>
     <file>
-      <name>${PROJECT_HOME}/Datos/salarios tech.parquet</name>
+      <name>${PROJECT_HOME}/../datos/salarios-tech.parquet</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -635,7 +635,7 @@
     <schema_definition/>
     <ignore_fields>N</ignore_fields>
     <file>
-      <name>${PROJECT_HOME}/DatosSalida/salarios_limpios</name>
+      <name>${PROJECT_HOME}/datos-salida/salarios_limpios</name>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extension>csv</extension>
       <append>N</append>
