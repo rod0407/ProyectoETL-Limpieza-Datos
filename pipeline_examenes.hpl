@@ -17,7 +17,7 @@
   <transform>
     <type>CSVInput</type>
     <name>CSV file input</name>
-    <filename>C:\Users\rodri\Documents\ETL\Datos\Datos_Grupo - Hoja 1.csv</filename>
+    <filename>${PROJECT_HOME}/Datos/Datos_Grupo - Hoja 1.csv</filename>
     <include_filename>N</include_filename>
     <rownum_field/>
     <header>Y</header>
@@ -342,7 +342,7 @@
     <schema_definition/>
     <ignore_fields>N</ignore_fields>
     <file>
-      <name>C:\Users\rodri\Documents\ETL\DatosSalida\DatosLimpios.txt</name>
+      <name>${PROJECT_HOME}/DatosSalida/DatosLimpios</name>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extension>csv</extension>
       <append>N</append>
